@@ -1,0 +1,127 @@
+<title>YesMyFault</title>
+<head>	
+	<link rel="icon" href="title.png" type="image/x-icon">
+</head>
+<body>
+
+<center>
+	<h1>YesMyFault 1.0 By <a href="https://github.com/suntrise/suntrise.github.io/">STR</a></h1>
+	<h2>（Fake一个BSOD界面，你可以定制它的颜色及文字）</h2>
+<img style="display:none;position: absolute;left: 0;bottom: 0;" src="随你走.png">
+<br><div style="font-size: 20px;">
+背景颜色：<input type="color" id="bsodbg" style="height:50px;width:100px;" value="#096BAC"> &nbsp &nbsp
+字体颜色：<input type="color" style="height:50px;width:100px;" id="bsodfc" value="#FFFFFF">
+<br><br>
+:( <textarea name="bsli1" id="bssad">:(</textarea>
+<br>
+第一行：<textarea id="bsli1">你的设备遇到问题，需要重启。</textarea>
+<br>
+第二行：<textarea id="bsli2">我们只为你收集某些信息，然后为你重新启动。</textarea>
+<br>
+第三行：<textarea id="bsli3">已完成</textarea>
+<br>
+第四行：<textarea id="bsli4">有关此问题的详细信息和可能的解决方法，请访问 </textarea>
+<br>
+第五行：<textarea id="bsli5">https://www.windows.com/stopcode</textarea>
+<br>
+第六行：<textarea id="bsli6">如果致电支持人员，请向他们提供以下信息：</textarea>
+<br>
+第七行：<textarea id="bsli7">错误代码：0x00000000</textarea>
+<br><input type="checkbox" name="" id="qrm" checked="">是否显示二维码
+<br><br><button style="padding: 10px;" onclick="show()">开始</button>
+（按下F11进入全屏，按esc键以退出BSOD界面）
+</div>
+</center>
+<div class="bsod_bg" id="bsod" style="background:#457948;">
+<div style="position: absolute; top:7%;left: 20%;">
+<span id="bsodsad" style="font-size:120pt; margin:0; margin-bottom:10pt">:(</span>
+<br><br>
+<p style="font-size:25pt; margin:0; padding:0">
+<span id="bsline1"></span>
+<br><span id="bsline2"></span>
+<br><br><span id="completed">100</span>% <span id="bsline3"></span>
+</p>
+<br><br><br>
+<img id="qr" style="float:left;" src="qr.png">
+<div style="float:left;margin-left:30px;width:%;">
+<p style="font-size:14pt;margin-top:0px;margin-left:px;  padding:0;line-height:32px;"><span id="bsline4">
+</span><br><span id="bsline5"></span>
+<br><br><span id="bsline6"></span>
+<br><span id="bsline7"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+
+<style type="text/css">
+	body{
+		color: #07D;
+		background: #EEE;
+		text-align: ;
+	}
+	textarea{
+		font-family: Microsoft Yahei;
+		height: 50px;
+		width: 500px;
+		font-size: 20px;
+	}
+	.bsod_bg{
+		cursor: none;
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height:100%;
+		width:100%;
+		font-family: Segoe UI;
+		font-weight:;
+		color: ;
+	}
+</style>
+
+<script type="text/javascript"> 
+var col=setInterval(bsodset,1)
+function bsodset() {
+	bsod.style.background=bsodbg.value;
+	bsod.style.color=bsodfc.value
+	bsodsad.innerHTML=bssad.value
+    bsline1.innerHTML=bsli1.value
+    bsline2.innerHTML=bsli2.value
+    bsline3.innerHTML=bsli3.value    
+    bsline4.innerHTML=bsli4.value
+    bsline5.innerHTML=bsli5.value
+    bsline6.innerHTML=bsli6.value 
+    bsline7.innerHTML=bsli7.value
+    if (qrm.checked) {
+	qr.style.display="block";
+    }    
+    else{
+	qr.style.display="none";
+    }
+}
+function show() {
+	document.getElementById('bsod').style.display='block';
+}
+var message="Sorry, right-click has been disabled"; 
+function clickIE() {if (document.all) {(message);return false;}} 
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) { 
+if (e.which==2||e.which==3) {(message);return false;}}} 
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;} 
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;} 
+document.oncontextmenu=new Function("return false") 
+// --> 
+function hotkey()
+{
+var a=window.event.keyCode;
+if(a==27)
+{
+bsod.style.display="none";
+}
+}
+window.onload = function(){
+document.onkeydown = hotkey;
+};
+</script>

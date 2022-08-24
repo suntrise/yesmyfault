@@ -1,0 +1,2 @@
+# yesmyfault
+A BSOD Simulator

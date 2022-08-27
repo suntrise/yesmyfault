@@ -1,2 +1,2 @@
-# yesmyfault
+# YesMyFault
 A BSOD simulator Web

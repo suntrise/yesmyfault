@@ -2,22 +2,28 @@
 	<link rel="icon" href="title.png" type="image/x-icon">
 </head>
 <body>
-
+<a href="https://suntrise.github.io/" style="position:absolute;">← 回到主页</a>
 <center>
-	<h1>YesMyFault 1.1 By <a href="https://suntrise.github.io">STR</a></h1>
-	<h2>（假装设备蓝屏了，你可以定制它的颜色及文字）</h2>
-<img style="display:none;position: absolute;left: 0;bottom: 0;" src="随你走.png">
-<br><div style="font-size: 20px;">
-背景颜色：<input type="color" id="bsodbg" style="height:35px;width:60px;" value="#096BAC">
+	<h2>YesMyFault 1.2 By <a href="https://suntrise.github.io">STR</a></h2>
+	<h3>（一个蓝屏模拟器） <a href="https://github.com/suntrise/yesmyfault" target="_blank">项目主页</a></h3>
+<div style="font-size: 20px;">
+背景颜色：<input type="color" id="bsodbg" style="height:35px;width:60px;" value="#0086ac">
 字体颜色：<input type="color" style="height:35px;width:60px;" id="bsodfc" value="#FFFFFF">
+<br>
+备选颜色：<button style="font-size: 15px;color:#fff;background:#0086ac;" onclick="bsodbg.value='#0086ac'">蓝色1</button>
+<button style="font-size: 15px;color:#fff;background:#006cd0;" onclick="bsodbg.value='#006cd0'">蓝色2</button>
+<button style="font-size: 15px;color:#fff;background:#096BAC;" onclick="bsodbg.value='#096BAC'">蓝色3</button>
+<button style="font-size: 15px;color:#fff;background:#003d92;" onclick="bsodbg.value='#003d92'">蓝色4</button>
+<button style="font-size: 15px;color:#fff;background:#246f24;" onclick="bsodbg.value='#246f24'">预览版绿</button>
 <br><br>
+</center>
 :( &nbsp<textarea name="bsli1" id="bssad">:(</textarea>
 <br>
 第一行：<textarea id="bsli1">你的设备遇到问题，需要重启。</textarea>
 <br>
 第二行：<textarea id="bsli2">我们只为你收集某些信息，然后为你重新启动。</textarea>
 <br>
-第三行：<textarea id="bsli3n" style="width:70px">100</textarea><textarea id="bsli3">已完成</textarea>
+第三行：<textarea id="bsli3n" style="width:80px">100%</textarea><textarea id="bsli3">已完成</textarea>
 <br>
 第四行：<textarea id="bsli4">有关此问题的详细信息和可能的解决方法，请访问 </textarea>
 <br>
@@ -27,19 +33,20 @@
 <br>
 第七行：<textarea id="bsli7">错误代码：CRITICAL_PROCESS_DIED</textarea>
 <br><input type="checkbox" name="" id="qrm" checked="">是否显示二维码
-<br><br><button style="padding: 10px;" onclick="show()">开始</button>
+<br><br>
+<center><button style="padding: 10px;" onclick="show()">开始</button>
 （按下 F11 进入全屏，按下 Esc 键以退出蓝屏界面）
 </div>
 </center>
 
 <div class="bsod_bg" id="bsod" style="background:#457948;">
-<div style="position: absolute; top:7%;left: 18%;">
+<div style="position: absolute; top:5%;left: 18%;">
 <span id="bsodsad" style="font-size:120pt; margin:0; margin-bottom:10pt">:(</span>
 <br><br>
 <p style="font-size:25pt; margin:0; padding:0">
 <span id="bsline1"></span>
 <br><span id="bsline2"></span>
-<br><br><span id="bsline3n">100</span>% <span id="bsline3"></span>
+<br><br><span id="bsline3n">100%</span> <span id="bsline3"></span>
 </p>
 <br><br>
 <img id="qr" style="float:left;margin-right:30px;" src="qr.png">
@@ -59,11 +66,20 @@
 		color: #07D;
 		background: #EEE;
 		text-align: ;
+		font-size: 20px;
+	}
+	button{
+		padding: 5px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background: #07d;
+		color: #fff;
+		font-size: 18px;
 	}
 	textarea{
 		font-family: Microsoft Yahei;
-		height: 40px;
-		width: 500px;
+		height: 35px;
+		width: 80%;
 		font-size: 20px;
 	}
 	.bsod_bg{
@@ -106,7 +122,7 @@ function show() {
 	document.getElementById('bsod').style.display='block';
 }
 
-var message="Sorry, right-click has been disabled"; 
+var message="抱歉，右键已被禁止"; 
 function clickIE() {if (document.all) {(message);return false;}} 
 function clickNS(e) {if 
 (document.layers||(document.getElementById&&!document.all)) { 
@@ -116,6 +132,7 @@ if (document.layers)
 else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;} 
 document.oncontextmenu=new Function("return false") 
 // --> 
+
 function hotkey()
 {
 var a=window.event.keyCode;

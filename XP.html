@@ -1,0 +1,149 @@
+<head>	
+	<link rel="icon" href="title.png" type="image/x-icon">
+</head>
+<body>
+<a href="https://suntrise.github.io/" style="position:absolute;">← 回到主页</a>
+<center>
+	<h2>YesMyFault (for WinXP-7 BSOD) 1.2 By <a href="https://suntrise.github.io">STR</a></h2>
+	<h3>（模拟 WinXP-7 的蓝屏） <a href="https://github.com/suntrise/yesmyfault" target="_blank">项目主页</a>
+	<a href="https://suntrise.github.io/yesmyfault" target="_blank">模拟 Win8 及以后的蓝屏</a>
+</h3>
+<div style="font-size: 20px;">
+背景颜色：<input type="color" id="bsodbg" style="height:35px;width:60px;" value="#010082">
+字体颜色：<input type="color" style="height:35px;width:60px;" id="bsodfc" value="#FFFFFF">
+<br>
+</center>
+第一行：<textarea id="bsli1">A problem has been detected and windows has been shut down to prevent damage to your computer.</textarea>
+<br>
+第二行（错误名称）：<textarea id="bsli2">MEMORY_MANAGEMENT</textarea>
+<br>
+第三行：<textarea id="bsli3" style="height:50px">If this is the first time you've seen this stop error screen,restart your computer.If this screen appears again,follow these steps:</textarea>
+<br>
+第四行：<textarea id="bsli4" style="height:60px">
+Check to make sure any new hardware is properly installed. If this is a new installation, ask your hardware or software manufacturer for any windows updates you might need.
+</textarea>
+<br>
+第五行：<textarea id="bsli5" style="height:80px">If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options such as caching or shadowing if you need tu use safe Mode to remove or disable components, restart your computer.Press F8 to select advanced startup options, and then select safe mode.</textarea>
+<br>
+第六行：<textarea id="bsli6">Technical information:</textarea>
+<br>
+第七行（错误代码）：<textarea id="bsli7">*** STOP: 0x000000d1 (0x0000000000000028, 0x0000000000000002, 0x0000000000000001, 0xfffff88001d30cd3)</textarea>
+<br>
+第八行：<textarea id="bsli8">Collecting data for crash dump ...</textarea>
+<br>
+第九行：<textarea id="bsli9">Beginning dump for physical memory.</textarea>
+<br>
+第十行：<textarea id="bsli10">Dump physical memory to disk: </textarea><textarea id="bsli10n" style="width:60px">95</textarea>
+<br><br>
+<center><button style="padding: 10px;" onclick="show()">开始</button>
+（按下 F11 进入全屏，按下 Esc 键以退出蓝屏界面）</center>
+<br>
+（本来 Windows 蓝屏原来的字体是 Lucida Console，但是 Windows 的真实蓝屏带点像素化，作者代码水平有限，无法实现，所以改用了 Unifont 字体，与真实的蓝屏会略有区别，请见谅）
+
+</div>
+
+
+<div class="bsod_bg" id="bsod" style="">
+<div style="position: absolute;top: 3%;left: 0;">
+<p style="font-size:; margin:0; padding:0">
+<span id="bsline1"></span>
+<br><br><span id="bsline2"></span>
+<br><br><span id="bsline3"></span>
+<br><br><span id="bsline4"></span>
+<br><br><span id="bsline5"></span>
+<br><br><span id="bsline6"></span>
+<br><br><span id="bsline7"></span>
+<br><br><span id="bsline8"></span>
+<br><span id="bsline9"></span>
+<br><span id="bsline10"></span><span id="bsline10n"></span>
+</p>
+</div>
+</div>
+</div>
+</body>
+
+<style type="text/css">
+	body{
+		color: #07D;
+		background: #EEE;
+		text-align: ;
+		font-size: 20px;
+	}
+	button{
+		padding: 5px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background: #07d;
+		color: #fff;
+		font-size: 18px;
+	}
+	textarea{
+		font-family: Unifont;
+		height: 30px;
+		width: 80%;
+		font-size: 20px;
+	}
+	.bsod_bg{
+		cursor: none;
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height:100%;
+		width:100%;
+		font-family: Unifont;
+		font-weight: lighter;
+		font-smooth: never;
+		font-size: 24pt;
+		color: ;
+		overflow: hidden;
+	}
+	@font-face{
+		font-family: Unifont;
+		src: url("unifont-12.1.04.ttf");
+	}
+</style>
+
+<script type="text/javascript"> 
+var col=setInterval(bsodset,1)
+function bsodset() {
+	bsod.style.background=bsodbg.value;
+	bsod.style.color=bsodfc.value
+    bsline1.innerHTML=bsli1.value
+    bsline2.innerHTML=bsli2.value
+    bsline3.innerHTML=bsli3.value    
+    bsline4.innerHTML=bsli4.value
+    bsline5.innerHTML=bsli5.value
+    bsline6.innerHTML=bsli6.value 
+    bsline7.innerHTML=bsli7.value
+    bsline8.innerHTML=bsli8.value
+    bsline9.innerHTML=bsli9.value
+    bsline10.innerHTML=bsli10.value
+    bsline10n.innerHTML=bsli10n.value
+    if (qrm.checked) {
+	qr.style.display="block";
+    }    
+    else{
+	qr.style.display="none";
+    }
+}
+
+function show() {
+	document.getElementById('bsod').style.display='block';
+	bsod.oncontextmenu = stop;
+}
+
+function stop(){
+	return false;
+}
+
+function hotkey(){
+var a=window.event.keyCode;
+if(a==27){
+bsod.style.display="none";
+}
+}
+window.onload = function(){
+document.onkeydown = hotkey;
+};
+</script>

@@ -4,8 +4,9 @@
 <body>
 <a href="https://suntrise.github.io/" style="position:absolute;">← 回到主页</a>
 <center>
-	<h2>YesMyFault 1.2 By <a href="https://suntrise.github.io">STR</a></h2>
-	<h3>（一个蓝屏模拟器） <a href="https://github.com/suntrise/yesmyfault" target="_blank">项目主页</a></h3>
+	<h2>YesMyFault (for Win8↑ BSOD) v1.2 By <a href="https://suntrise.github.io">STR</a></h2>
+	<h3>（模拟 Win8 及更高版本的蓝屏界面） <a href="https://github.com/suntrise/yesmyfault" target="_blank">项目主页</a>
+		<a href="https://github.com/suntrise/yesmyfault" target="_blank">模拟 WinXP-7 的蓝屏</a></h3>
 <div style="font-size: 20px;">
 背景颜色：<input type="color" id="bsodbg" style="height:35px;width:60px;" value="#0086ac">
 字体颜色：<input type="color" style="height:35px;width:60px;" id="bsodfc" value="#FFFFFF">
@@ -120,24 +121,16 @@ function bsodset() {
 
 function show() {
 	document.getElementById('bsod').style.display='block';
+	bsod.oncontextmenu = stop;
 }
 
-var message="抱歉，右键已被禁止"; 
-function clickIE() {if (document.all) {(message);return false;}} 
-function clickNS(e) {if 
-(document.layers||(document.getElementById&&!document.all)) { 
-if (e.which==2||e.which==3) {(message);return false;}}} 
-if (document.layers) 
-{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;} 
-else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;} 
-document.oncontextmenu=new Function("return false") 
-// --> 
+function stop(){
+	return false;
+}
 
-function hotkey()
-{
+function hotkey(){
 var a=window.event.keyCode;
-if(a==27)
-{
+if(a==27){
 bsod.style.display="none";
 }
 }
